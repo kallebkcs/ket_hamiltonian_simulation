@@ -32,23 +32,6 @@ def get_observable_Z(state):
     z_paulistr = [operator_from_paulistr(generic_paulistr[:i] + 'Z' + generic_paulistr[i+1:]) for i in range(num_qubits)]
     return sum(z_paulistr)
 
-def get_exact_unitary(hamiltonian: Hamiltonian, t: float, state: Quant=[]):
-    # se quiser salvar processamento vc passa o estado já e assumimos que ele tenha a mesma dimensionalidade do hamiltoniano
-    if state:
-        num_qubits = len(state)
-    else:
-        num_qubits = max([max(term.map.keys()) for term in hamiltonian.terms]) + 1
-
-    pauli_str, coef = pauli_strings(hamiltonian, num_qubits)
-    H = np.zeros((2**num_qubits,2**num_qubits))
-    for i, paulistr in enumerate(pauli_str):
-        H += coef[i] * operator_from_paulistr(paulistr)
-    # H = hamiltoniano
-
-    # U = operador unitário para evolução do hamiltoniano em t    
-    U = expm(-1j * H * t)
-    return U
-
 def get_quantum_vector(state: Quant):
     state_dict = dump(state).states
     state_vector = np.zeros(2**len(state), dtype=complex)

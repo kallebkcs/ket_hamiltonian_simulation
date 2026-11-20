@@ -22,6 +22,7 @@ PARAMS = {
     "t": list_t,
     "m": list_m,
     "n_spins": list_spins,
+    "noise": [0] # incluir 1 apenas em simulações reduzidas
 }
 
 def generate_plan(plan_file, params):

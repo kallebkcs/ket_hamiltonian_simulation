@@ -1,0 +1,4 @@
+ket-lang==0.10.4.2
+qiskit-aer==0.18.4
+qiskit-ibm-runtime==0.52.1
+tqdm==4.70.1
